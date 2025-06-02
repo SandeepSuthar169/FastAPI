@@ -1,0 +1,2 @@
+Path Params :-> Path parameters are dynamic segmentes of a used 
+                to identify a specific resource. 
