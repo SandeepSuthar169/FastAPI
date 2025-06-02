@@ -1,2 +1,12 @@
 Path Params :-> Path parameters are dynamic segmentes of a used 
-                to identify a specific resource. 
+                to identify a specific resource.
+
+
+HTTPException :-> is a splical built-in exception in FastAPI used custom HTTP error 
+                responses when something goes wrong in your API.
+
+Query parameters :-> Query parameters are opetional key-value pairs appended to 
+                the end of a URL used to pass additional data to the server in an HTTP request,
+                they are typically employed for operations like filtering sorting searcging and pagination without 
+                altering the endpoint path itself.
+                        
