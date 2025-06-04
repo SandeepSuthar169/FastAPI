@@ -9,4 +9,14 @@ Query parameters :-> Query parameters are opetional key-value pairs appended to
                 the end of a URL used to pass additional data to the server in an HTTP request,
                 they are typically employed for operations like filtering sorting searcging and pagination without 
                 altering the endpoint path itself.
+
+
+                /patients?city=Delhi&sort_by=age
+                
+                the ? marks the start of query parameters
+                each parameters is a key-values pairs key = value
+                multiple parameter are sparated by & 
+
+                city = Delhi
+                sort_by=age
                         
