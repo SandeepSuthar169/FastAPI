@@ -1,0 +1,8 @@
+request body :->  request body is the data sent by the client (usually in JSON format) in an HTTP request, 
+                  typically with POST, PUT, or PATCH methods. It contains the actual content the client wants to send to the server — 
+                  such as form submissions, JSON objects, or file uploads.
+
+1. HTTP request 
+2. Validate data 
+3. New record data add to json file  
+                 
