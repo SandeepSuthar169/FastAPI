@@ -97,7 +97,7 @@ The API returns appropriate HTTP status codes:
 - 422: Validation error
 
 ### Dependencies
-- Python 3.7+
+- Python3
 
 - FastAPI
 
