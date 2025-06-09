@@ -37,6 +37,16 @@ class Patient(BaseModel):
             return 'Obese'
         
 
+class PatientUpdate(BaseModel):
+    name: Annotated[Optional[str], Field(default=None)]
+    city: Annotated[Optional[str], Field(default=None)]
+    age: Annotated[Optional[int], Field(default=None, gt=0)]
+    gender: Annotated[Optional[Literal['male', 'female']], Field(default=None)]
+    height: Annotated[Optional[float], Field(default=None, gt =0)]
+    weight: Annotated[Optional[float], Field(default=None, gt=0)]
+
+        
+
 def load_data():
     with open('patients.json', 'r') as f:
         data = json.load(f)
@@ -109,3 +119,47 @@ def create_patient(patient: Patient):
     return JSONResponse(status_code=201, content={'message':'patient created successfully'})
 
 
+@app.put('/edit/{patient_id}')
+def update_patient(patient_id: str, patient_update: PatientUpdate):
+    data = load_data()
+    if patient_id not in data:
+        raise HTTPException(status_code=404, detail='patient not found')
+    existing_patinet_info = data[patient_id]
+
+    update_patient_info=patient_update.model_dump(exclude_unset=True)
+
+    for key, value in update_patient_info.items():
+        existing_patinet_info[key] = value
+
+
+# existing_patinet_info -> pydantic object -> updated bmi + verdict  
+    existing_patinet_info['id'] = patient_id   
+    patient_pydandic_obj = Patient(**existing_patinet_info)
+
+
+#   pydantic object -> dict
+    existing_patinet_info = patient_pydandic_obj.model_dump(exclude='id')
+
+    data[patient_id] =  existing_patinet_info 
+
+    save_data(data)
+
+
+    return JSONResponse(status_code=200, content={'message': 'patient updated'})
+
+
+
+
+
+@app.delete('/delete/{patient_id}')
+def delete_patient(patient_id: str):
+
+    data = load_data()
+
+    if patient_id not in data:
+        raise HTTPException(status_code=404, detail='Patient not found')
+    del data[patient_id]
+
+    save_data(data)
+
+    return JSONResponse(status_code=202, content={'message': 'patient deleted'})
