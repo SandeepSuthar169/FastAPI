@@ -3,7 +3,6 @@
 A Data-based RESTful API for managing patient records with BMI calculation functionality.
 
 ## Features
-
 - Create, read, update, and delete patient records
 - Automatic BMI calculation and health verdict
 - Sorting patients by height, weight, or BMI
